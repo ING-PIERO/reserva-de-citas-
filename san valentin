@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quieres pasar  San Valentín conmigo </title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+        }
+        .card {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.4s, background-color 0.4s;
+        }
+        .card:hover {
+            transform: scale(1.1);
+            background-color: #ffe6e6;
+        }
+        .heart {
+            color: red;
+            font-size: 24px;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .hidden-message {
+            display: none;
+            font-size: 20px;
+            margin-top: 20px;
+            color: darkred;
+            font-weight: bold;
+        }
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://cdn-icons-png.flaticon.com/512/1408/1408869.png') no-repeat center;
+            background-size: contain;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .modal button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background: #ff758c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" onclick="mostrarMensaje()">
+        <h2>Quieres pasar  San Valentín conmigo <span class="heart">❤️</span></h2>
+        <p>Haz clic para ver tu mensaje especial</p>
+        <div class="hidden-message" id="mensaje">
+            🌹 ¡Eres mi sueño hecho realidad! 💖
+            <br>
+            Con amor, Piero  de para  Jois 💕
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <h3>Una sorpresa para ti 💕</h3>
+        <p>Siempre estarás en mi corazón tus hermosos ojos iluminen siempre mi camino  te amoo ❤️</p>
+        <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+    <script>
+        function mostrarMensaje() {
+            document.getElementById("mensaje").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("modal").style.display = "block";
+            }, 1000);
+        }
+        function cerrarModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+        function crearFlores() {
+            for (let i = 0; i < 15; i++) {
+                let flower = document.createElement("div");
+                flower.classList.add("flower");
+                flower.style.left = Math.random() * window.innerWidth + "px";
+                flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(flower);
+            }
+        }
+        crearFlores();
+    </script>
+</body>
+</html>
